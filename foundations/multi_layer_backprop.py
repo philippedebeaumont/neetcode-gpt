@@ -30,12 +30,12 @@ class Solution:
         loss = np.round(np.mean(np.square(y_hat - y_true)), 4)
 
         dz2 = 2 * (y_hat - y_true)
-        dw2 = np.round(dz2.reshape(1, -1) * a1.reshape(1, -1), 4)
+        dw2 = np.round(dz2.reshape(1, -1) @ a1.reshape(1, -1), 4)
         db2 = np.round(dz2, 4)
         
         da1 = np.dot(dz2.reshape(1, -1), W2).flatten()
         dz1 = da1 * (z1 > 0).astype(float)
-        dW1 = np.round(np.dot(dz1.reshape(-1, 1), x.reshape(1, -1)), 4)
+        dW1 = np.round(dz1.reshape(-1, 1) @ x.reshape(1, -1), 4)
         db1 = np.round(dz1, 4)
 
         return {"loss": loss, "dW1": dW1, "db1": db1, "dW2": dw2, "db2": db2}
