@@ -33,7 +33,7 @@ class Solution:
         dw2 = np.round(dz2.reshape(1, -1) @ a1.reshape(1, -1), 4)
         db2 = np.round(dz2, 4)
         
-        da1 = np.dot(dz2.reshape(1, -1), W2).flatten()
+        da1 = np.dot(dz2.reshape(1, -1), W2.reshape(1, -1)).flatten()
         dz1 = da1 * (z1 > 0).astype(float)
         dW1 = np.round(dz1.reshape(-1, 1) @ x.reshape(1, -1), 4)
         db1 = np.round(dz1, 4)
